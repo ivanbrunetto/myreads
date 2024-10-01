@@ -1,10 +1,23 @@
 import "./App.css";
 import { useState } from "react";
+import ListBooks from "./components/ListBooks";
+import * as mockData from "./BookListData";
 
 function App() {
   const [showSearchPage, setShowSearchpage] = useState(false);
+  const [books, setBooks] = useState([]);
+
+  const addBook = (book) => {
+    setBooks([...books, book]);
+  };
 
   return (
+    <div className="app">
+      <ListBooks books={mockData.data} />
+    </div>
+  );
+
+  /* return  (
     <div className="app">
       {showSearchPage ? (
         <div className="search-books">
@@ -278,7 +291,7 @@ function App() {
         </div>
       )}
     </div>
-  );
+  ); */
 }
 
 export default App;
