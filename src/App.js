@@ -1,19 +1,23 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import ListBooks from "./components/ListBooks";
-import * as mockData from "./BookListData";
 import SearchBooks from "./components/SearchBooks";
+import * as BooksAPI from "./BooksAPI";
 
 function App() {
-  const [showSearchPage, setShowSearchpage] = useState(false);
   const [books, setBooks] = useState([]);
 
   const navigate = useNavigate();
 
-  const addBook = (book) => {
-    setBooks([...books, book]);
-  };
+  useEffect(() => {
+    const getAllBooks = async () => {
+      const res = await BooksAPI.getAll();
+      setBooks(res);
+    };
+
+    getAllBooks();
+  });
 
   const handleSearchBooks = () => {
     navigate("/");
@@ -22,7 +26,7 @@ function App() {
   return (
     <div className="app">
       <Routes>
-        <Route exact path="/" element={<ListBooks books={mockData.data} />} />
+        <Route exact path="/" element={<ListBooks books={books} />} />
         <Route
           path="/search"
           element={<SearchBooks onSearchBooks={handleSearchBooks} />}
