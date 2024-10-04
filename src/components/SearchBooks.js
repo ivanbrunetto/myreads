@@ -1,9 +1,10 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import SearchBooksBar from "./SearchBooksBar";
 import SearchBooksResults from "./SearchBooksResults";
 import * as BooksAPI from "../BooksAPI";
 
-const SearchBooks = () => {
+const SearchBooks = ({ onUpdateBook }) => {
   const [books, setBooks] = useState([]);
   const [searchError, setSearchError] = useState(false);
 
@@ -25,10 +26,14 @@ const SearchBooks = () => {
       {searchError ? (
         <div className="search-books-results">No results found</div>
       ) : (
-        <SearchBooksResults books={books} />
+        <SearchBooksResults books={books} onUpdateBook={onUpdateBook} />
       )}
     </>
   );
+};
+
+SearchBooks.proTypes = {
+  onUpdateBook: PropTypes.func.isRequired,
 };
 
 export default SearchBooks;

@@ -1,7 +1,9 @@
-const BookshelfChangerMenu = () => {
+import PropType from "prop-types";
+
+const BookshelfChangerMenu = ({ onUpdateBook }) => {
   return (
     <div className="book-shelf-changer">
-      <select>
+      <select onChange={(e) => onUpdateBook(e.target.value)}>
         <option value="none" disabled>
           Move to...
         </option>
@@ -12,6 +14,10 @@ const BookshelfChangerMenu = () => {
       </select>
     </div>
   );
+};
+
+BookshelfChangerMenu.propType = {
+  onUpdateBook: PropType.func.isRequired,
 };
 
 export default BookshelfChangerMenu;
