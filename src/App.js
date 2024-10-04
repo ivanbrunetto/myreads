@@ -28,10 +28,10 @@ function App() {
   const handleOnUpdateBook = (book, shelf) => {
     const update = async () => {
       const res = await BooksAPI.update(book, shelf);
-      console.log(res);
       book.shelf = shelf;
-      if (countBooks(res) > books.length) {
-        console.log("book added!");
+      if (shelf === "none") {
+        setBooks(books.filter((b) => b.id !== book.id));
+      } else if (countBooks(res) > books.length) {
         setBooks([...books, book]);
       } else {
         setBooks(books.map((b) => (b.id === book.id ? book : b)));

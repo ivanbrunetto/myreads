@@ -9,6 +9,7 @@ const Book = ({ book, onUpdateBook }) => {
         <BookCover imageLinks={book.imageLinks} />
         <BookshelfChangerMenu
           onUpdateBook={(shelf) => onUpdateBook(book, shelf)}
+          selectedShelf={book.shelf}
         />
       </div>
       <div className="book-title">{book.title}</div>
