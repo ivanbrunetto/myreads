@@ -10,11 +10,15 @@ const SearchBooks = ({ onUpdateBook }) => {
 
   const handleSearch = (str) => {
     const search = async (str) => {
+      if (!str) return;
+
+      console.log("BooksAPI.search");
       const result = await BooksAPI.search(str);
       if (result && !result.error) {
         setBooks(result);
       }
-      setSearchError(result.error);
+
+      if (result) setSearchError(result.error);
     };
 
     search(str);
