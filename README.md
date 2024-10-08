@@ -2,7 +2,7 @@
 
 This is the final assessment project for Udacity's React Fundamentals course. 
 
-# App Functionality
+## App Functionality
 
 The main page displays a list of "shelves" (i.e. categories), each of which contains a number of books. The three shelves are:
 
@@ -30,7 +30,22 @@ This project is using a backend server provided by Udacity, which comes with som
 - the server uses a fixed set of cached results, so the serach is limited to a particular set of terms
 - the data is not persisted (saved); your shelfes come with a fixed set of books which you may change, but the changes will be lost after starting the app again (or just refreshing the page)
 
-# Starter Code
+## Starter Code
 
 The project is based on the starter code provided [here](https://github.com/udacity/nd0191-c1-myreads/). It contains all the required CSS, HTML and backend server API code. 
 
+## Prerequisites
+
+1. Node & npm
+
+## Installing
+
+1. `cd` into project root folder 
+2. `npm install` (install dependencies)
+3. `npm start` (build and start development server)
+
+For more development commands, run `npm run`
+
+## Author
+
+Ivan E. Brunetto
