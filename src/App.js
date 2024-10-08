@@ -53,7 +53,9 @@ function App() {
         />
         <Route
           path="/search"
-          element={<SearchBooks onUpdateBook={handleOnUpdateBook} />}
+          element={
+            <SearchBooks myBooks={books} onUpdateBook={handleOnUpdateBook} />
+          }
         />
       </Routes>
     </div>

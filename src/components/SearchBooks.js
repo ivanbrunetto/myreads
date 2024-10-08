@@ -4,7 +4,7 @@ import SearchBooksBar from "./SearchBooksBar";
 import SearchBooksResults from "./SearchBooksResults";
 import * as BooksAPI from "../BooksAPI";
 
-const SearchBooks = ({ onUpdateBook }) => {
+const SearchBooks = ({ myBooks, onUpdateBook }) => {
   const [books, setBooks] = useState([]);
   const [searchError, setSearchError] = useState(false);
 
@@ -15,7 +15,11 @@ const SearchBooks = ({ onUpdateBook }) => {
       console.log("BooksAPI.search");
       const result = await BooksAPI.search(str);
       if (result && !result.error) {
-        setBooks(result);
+        const books = result.map((book) => {
+          const shelfBook = myBooks.find((b) => b.id === book.id);
+          return shelfBook ? shelfBook : book;
+        });
+        setBooks(books);
       }
 
       if (result) setSearchError(result.error);
@@ -38,6 +42,7 @@ const SearchBooks = ({ onUpdateBook }) => {
 
 SearchBooks.proTypes = {
   onUpdateBook: PropTypes.func.isRequired,
+  myBooks: PropTypes.object.isRequired,
 };
 
 export default SearchBooks;
